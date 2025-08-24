@@ -1,0 +1,62 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.search-box {
+    display: flex;
+    margin-top: 1rem;
+    gap: 10px;
+}
+#word-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#search-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#result-container {
+    margin-top: 2rem;
+}
+.word-info {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.word-info:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.word-type {
+    color: #888;
+    font-style: italic;
+}
+.example-sentence {
+    margin-top: 0.5rem;
+}
+.example-sentence p {
+    margin: 0.2rem 0;
+}
