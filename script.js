@@ -16,8 +16,8 @@ async function getWordData() {
     }
     
     // API isteği artık Replit sunucunuza gönderiliyor.
-    // Replit'ten aldığınız URL'yi buraya yapıştırın ve sonuna /api/lookup ekleyin.
-    const replitUrl = "https://replit.com/@ibrahimalptekin/sozluk-backend/api/lookup"; 
+    // Replit'ten aldığınız canlı URL'yi buraya yapıştırdım.
+    const replitUrl = "https://sozluk-backend--ibrahimalptekin.repl.co/api/lookup"; 
     
     try {
         const response = await fetch(replitUrl, {
@@ -32,9 +32,6 @@ async function getWordData() {
         }
 
         const data = await response.json();
-        
-        // Hata ayıklama için konsola gelen veriyi yazdır
-        console.log("Replit'ten gelen ham veri:", data);
         
         // OpenAI'den gelen mesaj içeriğini parse edin
         const parsedData = JSON.parse(data.choices[0].message.content);
