@@ -1,0 +1,34 @@
+name: API Proxy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-api-proxy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Python Script
+      run: |
+        python -c "
+import requests
+import os
+import json
+
+word = 'test'
+api_key = os.environ.get('OPENAI_API_KEY')
+
+# Burada OpenAI'a istek gönderme mantığını Python'a taşıyoruz
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': f'Bearer {api_key}'
+}
+data = {
+    'model': 'gpt-3.5-turbo',
+    'messages': [{'role': 'user', 'content': f'Define the word: {word}'}]
+}
+
+response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, data=json.dumps(data))
+print(response.json())
+"
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
