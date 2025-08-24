@@ -4,7 +4,7 @@ async function getWordData() {
     // ... (kelime alma ve hata kontrolü kısmı)
 
     // API anahtarını buraya olduğu gibi yapıştırın.
-    const apiKey = "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";
+    const apiKey = "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";
 
     const promptText = `
         Aşağıdaki İngilizce kelime için bir sözlük girişi oluştur.
