@@ -16,8 +16,8 @@ async function getWordData() {
     }
     
     // API isteği artık Replit sunucunuza gönderiliyor.
-    // Replit'ten aldığınız canlı URL'yi buraya yapıştırdım.
-    const replitUrl = "https://sozluk-backend--ibrahimalptekin.repl.co/api/lookup"; 
+    // Doğru Replit URL'sini buraya yapıştırdım.
+    const replitUrl = "https://b57a5440-94d8-4594-88af-046107c1c643-00-2631g0p2m7vcu.sisko.replit.dev/api/lookup"; 
     
     try {
         const response = await fetch(replitUrl, {
