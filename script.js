@@ -17,7 +17,7 @@ async function getWordData() {
     
     // API isteği artık Replit sunucunuza gönderiliyor.
     // Replit'ten aldığınız URL'yi buraya yapıştırın ve sonuna /api/lookup ekleyin.
-    const replitUrl = "https://replit.com/@ibrahimalptekin/sozluk-backend"; 
+    const replitUrl = "https://replit.com/@ibrahimalptekin/sozluk-backend/api/lookup"; 
     
     try {
         const response = await fetch(replitUrl, {
