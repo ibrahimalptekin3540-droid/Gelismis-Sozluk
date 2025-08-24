@@ -16,7 +16,7 @@ async function getWordData() {
     }
 
     // Bu alanı kendi API anahtarınızla değiştirin!
-    const apiKey = "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";
+    const apiKey = "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";
     const promptText = `
         Aşağıdaki İngilizce kelime için bir sözlük girişi oluştur.
         Kelimenin türünü (verb, noun, adjective) belirt.
