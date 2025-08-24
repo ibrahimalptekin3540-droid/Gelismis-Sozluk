@@ -16,7 +16,6 @@ async function getWordData() {
     }
     
     // API isteği artık Replit sunucunuza gönderiliyor.
-    // Doğru Replit URL'sini buraya yapıştırdım.
     const replitUrl = "https://b57a5440-94d8-4594-88af-046107c1c643-00-2631g0p2m7vcu.sisko.replit.dev/api/lookup"; 
     
     try {
@@ -33,27 +32,34 @@ async function getWordData() {
 
         const data = await response.json();
         
-        // OpenAI'den gelen mesaj içeriğini parse edin
         const parsedData = JSON.parse(data.choices[0].message.content);
         
+        // Yeni HTML içeriği oluşturma
         let outputHTML = `
             <div class="word-info">
-                <h2>${parsedData.word.charAt(0).toUpperCase() + parsedData.word.slice(1)} (${parsedData.partOfSpeech} - ${parsedData.turkishPartOfSpeech})</h2>
-            </div>
-            <div class="related-concepts">
-                <h3>İlişkili Kavramlar:</h3>
+                <h2>${parsedData.word.charAt(0).toUpperCase() + parsedData.word.slice(1)}</h2>
+                <p><strong>Kelime Türü:</strong> ${parsedData.partOfSpeech} - ${parsedData.turkishPartOfSpeech}</p>
+                <p><strong>Türkçe Karşılıkları:</strong> ${parsedData.turkishMeanings.join(', ')}</p>
             </div>
         `;
-        
-        parsedData.relatedConcepts.forEach(concept => {
+
+        if (parsedData.synonyms && parsedData.synonyms.length > 0) {
             outputHTML += `
-                <div class="example-sentence">
-                    <p><strong>Kavram:</strong> ${concept.concept} (${concept.turkishConcept})</p>
-                    <p><strong>İngilizce:</strong> ${concept.englishExample}</p>
-                    <p><strong>Türkçe:</strong> ${concept.turkishExample}</p>
+                <div class="synonyms-section">
+                    <h3>Eş Anlamlılar</h3>
                 </div>
             `;
-        });
+            
+            parsedData.synonyms.forEach(synonym => {
+                outputHTML += `
+                    <div class="synonym-card">
+                        <h4>${synonym.synonym} (${synonym.turkishMeanings.join(', ')})</h4>
+                        <p><strong>İngilizce Örnek:</strong> ${synonym.englishExample}</p>
+                        <p><strong>Türkçe Çeviri:</strong> ${synonym.turkishExample}</p>
+                    </div>
+                `;
+            });
+        }
 
         resultContainer.innerHTML = outputHTML;
 
