@@ -15,7 +15,7 @@ async function getWordData() {
         return;
     }
     
-    // API isteği artık Replit sunucunuza gönderiliyor.
+    // API isteği Replit sunucunuza gönderiliyor.
     const replitUrl = "https://b57a5440-94d8-4594-88af-046107c1c643-00-2631g0p2m7vcu.sisko.replit.dev/api/lookup"; 
     
     try {
@@ -34,7 +34,7 @@ async function getWordData() {
         
         const parsedData = JSON.parse(data.choices[0].message.content);
         
-        // Yeni HTML içeriği oluşturma
+        // HTML içeriğini oluşturma
         let outputHTML = `
             <div class="word-info">
                 <h2>${parsedData.word.charAt(0).toUpperCase() + parsedData.word.slice(1)}</h2>
@@ -43,6 +43,24 @@ async function getWordData() {
             </div>
         `;
 
+        if (parsedData.relatedConcepts && parsedData.relatedConcepts.length > 0) {
+            outputHTML += `
+                <div class="concepts-section">
+                    <h3>İlişkili Kavramlar</h3>
+                </div>
+            `;
+            
+            parsedData.relatedConcepts.forEach(concept => {
+                outputHTML += `
+                    <div class="concept-card">
+                        <h4>${concept.concept} (${concept.turkishConcept})</h4>
+                        <p><strong>İngilizce Örnek:</strong> ${concept.englishExample}</p>
+                        <p><strong>Türkçe Çeviri:</strong> ${concept.turkishExample}</p>
+                    </div>
+                `;
+            });
+        }
+        
         if (parsedData.synonyms && parsedData.synonyms.length > 0) {
             outputHTML += `
                 <div class="synonyms-section">
